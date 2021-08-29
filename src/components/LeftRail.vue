@@ -47,11 +47,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["filterBikes", "clearFilters"]),
-    applyFilters(filter, option) {
-      console.log("ugh", filter, option);
-      this.updateFilters({ filter, option });
-    }
+    ...mapActions(["filterBikes", "clearFilters"])
   },
   watch: {
     filters: {

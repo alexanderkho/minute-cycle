@@ -51,8 +51,6 @@ const bikes = [
   }
 ];
 
-console.log("hello'", bikes);
-
 const imageMap = {
   "Monster 821 Stealth": "Monster-821-Stealth.png",
   "F 750 GS": "F-750-GS.png",
@@ -60,4 +58,6 @@ const imageMap = {
   "Panigale V4": "Panigale-V4.png"
 };
 
-export { bikes, imageMap };
+bikes.forEach((bike) => (bike.image = imageMap[bike.model]));
+
+export { bikes };

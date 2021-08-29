@@ -1,5 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <v-container class="text-center">
+    <div class="text-h4  my-4">
+      Lorem ipsum dolor sit amet
+    </div>
+  </v-container>
 </template>

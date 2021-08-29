@@ -1,6 +1,9 @@
 <template>
   <v-container fluid>
     <bike-card v-for="(bike, i) in bikes" :bike="bike" :key="i"></bike-card>
+    <div class="text-h6" v-show="bikes.length === 0">
+      No bikes found, please try another filter
+    </div>
   </v-container>
 </template>
 

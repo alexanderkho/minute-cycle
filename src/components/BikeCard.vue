@@ -3,7 +3,11 @@
     <v-container fluid>
       <v-row>
         <v-col cols="4">
-          <img class="bike-thumbnail" :src="imagePath" :alt="bike.model" />
+          <img
+            class="bike-thumbnail"
+            :src="require('../assets/' + bike.image)"
+            :alt="bike.model"
+          />
         </v-col>
         <v-col>
           <v-card-title>
@@ -11,7 +15,9 @@
               {{ bike.model }}
             </router-link>
           </v-card-title>
-          <v-card-subtitle>{{ bike.manufacturer }}</v-card-subtitle>
+          <v-card-subtitle class="py-0">
+            Manufacturer: {{ bike.manufacturer }}
+          </v-card-subtitle>
           <v-container>
             <v-row class="mt-2">
               <v-col cols="8"></v-col>
@@ -26,18 +32,18 @@
           </v-container>
         </v-col>
       </v-row>
-      <v-row v-if="showDetail">
-        <v-card-text>
-          {{ bike.description }}
-        </v-card-text>
-      </v-row>
+      <v-expand-transition>
+        <div v-show="showDetail">
+          <v-card-text>
+            {{ bike.description }}
+          </v-card-text>
+        </div>
+      </v-expand-transition>
     </v-container>
   </v-card>
 </template>
 
 <script>
-import { imageMap } from "../data";
-
 export default {
   name: "BikeCard",
   props: {
@@ -49,10 +55,6 @@ export default {
     };
   },
   computed: {
-    imagePath() {
-      const img = imageMap[this.bike.model];
-      return require("../assets/" + img);
-    },
     bikeDetailUrl() {
       return "/bikes/" + this.bike.model.split(" ").join("-");
     }
@@ -67,7 +69,7 @@ export default {
 }
 
 .v-card__text {
-  word-break: break-all;
+  word-break: break-word;
   hyphens: auto;
 }
 </style>
