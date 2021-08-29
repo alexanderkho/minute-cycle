@@ -6,7 +6,11 @@
           <img class="bike-thumbnail" :src="imagePath" :alt="bike.model" />
         </v-col>
         <v-col>
-          <v-card-title>{{ bike.model }}</v-card-title>
+          <v-card-title>
+            <router-link :to="bikeDetailUrl">
+              {{ bike.model }}
+            </router-link>
+          </v-card-title>
           <v-card-subtitle>{{ bike.manufacturer }}</v-card-subtitle>
           <v-container>
             <v-row class="mt-2">
@@ -48,6 +52,9 @@ export default {
     imagePath() {
       const img = imageMap[this.bike.model];
       return require("../assets/" + img);
+    },
+    bikeDetailUrl() {
+      return "/bikes/" + this.bike.model.split(" ").join("-");
     }
   }
 };

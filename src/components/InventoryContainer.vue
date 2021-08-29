@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <bike-card v-for="bike in bikes" :bike="bike" :key="bike.model"></bike-card>
+    <bike-card v-for="(bike, i) in bikes" :bike="bike" :key="i"></bike-card>
   </v-container>
 </template>
 
