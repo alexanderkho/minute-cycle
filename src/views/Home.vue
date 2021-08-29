@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container class="bg-grey-lighten-3" fluid>
+    <v-row class="bg-gray">
+      <left-rail></left-rail>
+      <v-col cols="6">
+        <inventory-container></inventory-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import LeftRail from "@/components/LeftRail.vue";
+import InventoryContainer from "@/components/InventoryContainer.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
+    LeftRail,
+    InventoryContainer
   }
-}
+};
 </script>
