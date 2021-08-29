@@ -12,13 +12,13 @@ export default new Vuex.Store({
         name: "manufacturer",
         display: "Manufacturer",
         options: ["Ducati", "BMW", "Indian"],
-        current: []
+        active: null
       },
       {
         name: "color",
         display: "Color",
         options: ["Black", "Red", "Yellow"],
-        current: []
+        active: null
       }
     ]
   },
@@ -32,11 +32,23 @@ export default new Vuex.Store({
   },
   actions: {
     filterBikes({ state, commit }) {
-      //eslint-disable-next-line
       const { filters } = state;
-      const newBikes = bikes;
-      //TODO: logic to filter bikes based on fitlers
-      commit("updateFilters", newBikes);
+      let newBikes = [...bikes];
+      filters.forEach((f) => {
+        if (f.active) {
+          newBikes = newBikes.filter((bike) =>
+            bike[f.name].toLowerCase().includes(f.active.toLowerCase())
+          );
+        }
+      });
+      commit("updateBikes", newBikes);
+    },
+    clearFilters({ commit, state }) {
+      const newFilters = state.filters.map((f) => ({
+        ...f,
+        active: null
+      }));
+      commit("updateFilters", newFilters);
     }
   },
   modules: {}

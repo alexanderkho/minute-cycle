@@ -6,7 +6,7 @@
           <img class="bike-thumbnail" :src="imagePath" :alt="bike.model" />
         </v-col>
         <v-col>
-          <h1>{{ bike.model }}</h1>
+          <v-card-title>{{ bike.model }}</v-card-title>
           <v-card-subtitle>{{ bike.manufacturer }}</v-card-subtitle>
           <v-container>
             <v-row class="mt-2">
@@ -23,7 +23,7 @@
         </v-col>
       </v-row>
       <v-row v-if="showDetail">
-        <v-card-text class="text-justify">
+        <v-card-text>
           {{ bike.description }}
         </v-card-text>
       </v-row>
@@ -49,9 +49,6 @@ export default {
       const img = imageMap[this.bike.model];
       return require("../assets/" + img);
     }
-  },
-  created() {
-    console.log("ugh", this.bike.description);
   }
 };
 </script>

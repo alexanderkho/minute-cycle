@@ -18,19 +18,23 @@
         </v-list-item-title>
       </v-list-item>
       <v-list-item>
-        <v-checkbox
-          v-for="option in filter.options"
-          :label="option"
-          :key="option"
-        ></v-checkbox>
+        <v-radio-group v-model="filter.active">
+          <v-radio
+            v-for="option in filter.options"
+            :key="option"
+            :label="option"
+            :value="option"
+          ></v-radio>
+        </v-radio-group>
       </v-list-item>
       <v-divider></v-divider>
     </div>
+    <v-btn @click="clearFilters()" class="my-4 mx-2">Clear All</v-btn>
   </v-navigation-drawer>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "LeftRail",
@@ -40,6 +44,21 @@ export default {
       const count = this.bikes.length;
       const label = count === 1 ? "result" : "results";
       return count + " " + label;
+    }
+  },
+  methods: {
+    ...mapActions(["filterBikes", "clearFilters"]),
+    applyFilters(filter, option) {
+      console.log("ugh", filter, option);
+      this.updateFilters({ filter, option });
+    }
+  },
+  watch: {
+    filters: {
+      handler() {
+        this.filterBikes();
+      },
+      deep: true
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="bg-grey-lighten-3" fluid>
+  <v-container class="bg-grey-lighten-3">
     <v-row class="bg-gray">
       <left-rail></left-rail>
       <v-col cols="6">
